@@ -1,0 +1,57 @@
+.container {
+    align-items: center;
+    background: var(--gray-800);
+    justify-content: flex-start;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow: hidden;
+}
+
+.sidebarCover {
+    height: 72px;
+    width: 100%;
+    position: relative;
+    object-fit: cover;
+}
+
+.profile{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 2;
+    margin-top: calc(0px - 2.5rem - 8px);
+}
+
+.profileImage {
+    border: 4px solid var(--gray-800);
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(255, 255, 255, 0.3);
+    outline: 1px solid var(--green-500); ;
+    height: 5rem;
+    width: 5rem;
+    object-fit: cover;
+}
+
+.container footer {
+    padding: 2rem 1rem 2rem;
+}
+
+.footerButton {
+    display: flex;
+    gap: 0.825rem;
+    text-decoration: none;
+    padding: 8px 16px;
+    color: var(--green-500);
+    border: 1px solid var(--green-500);
+    border-radius: 8px;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.footerButton:hover {
+    background-color: var(--green-500);
+    color: var(--gray-100);
+    /* box-shadow: 2px 2px 8px rgba(255, 255, 255, 0.3); */
+}
