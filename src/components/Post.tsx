@@ -1,17 +1,20 @@
 
 import { Avatar } from './Avatar';
 import style from './Post.module.css'
+import { Comment } from './Comment';
+
 interface PostProps  {
     author: string;
     content: string;
 }
 export function Post({ author, content }: PostProps) {
     return (
+        <>
         <article className={style.post}>
             <header>
                 <div className={style.header}>
                 <div className={style.author}>
-                    <Avatar src='https://avatars.githubusercontent.com/u/25959443?v=4' />
+                    <Avatar src='https://github.com/hoffsilva.png' />
                     <div className={style.authorInformation}>
                         <strong>{author}</strong>
                         <span className={style.authorHole}>{author}</span>
@@ -28,14 +31,30 @@ export function Post({ author, content }: PostProps) {
                  <a href="">#nlw</a>
                  <a href="">#rocketseat</a></p>
             </div>
-            <div className={style.commentSection}>
+            
+            <form className={style.commentForm}>
                 <strong>Deixe seu comentário</strong>
-                <form>
-                    <textarea placeholder="Comentário" rows={4}></textarea>
+                    <textarea placeholder="Digite aqui seu comentário" rows={4}></textarea>
+                <footer>
                     <button type="submit">Publicar</button>
-                </form>
-            </div>
-
+                </footer>
+            </form>
         </article>
+        <div>
+            <Comment 
+                imageURL='https://avatars.githubusercontent.com/u/25959443?v=4' 
+                name='Devon' 
+                commentedAt='Há 2 horas' 
+                text='este é o texto do comentário'
+            />
+            <Comment 
+                imageURL='https://avatars.githubusercontent.com/u/25959443?v=4' 
+                name='Devon' 
+                commentedAt='Há 2 horas' 
+                text='este é o texto do comentário'
+            />
+            
+        </div>
+        </>
     )
 }
