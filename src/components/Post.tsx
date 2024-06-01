@@ -2,34 +2,37 @@
 import { Avatar } from './Avatar';
 import style from './Post.module.css'
 import { Comment } from './Comment';
+import { IPost } from '../model/IPost';
+import { PostProps } from '../App';
 
-interface PostProps  {
-    author: string;
-    content: string;
-}
-export function Post({ author, content }: PostProps) {
+export function Post({id, author, publishedAt, content, comments }: PostProps) {
+    const options: Intl.DateTimeFormatOptions = { 
+        weekday: 'long', // Nome completo do dia da semana
+        year: 'numeric', // Ano completo
+        month: 'long', // Nome completo do mês
+        day: 'numeric', // Dia do mês
+        hour: 'numeric', // Hora
+        minute: 'numeric' // Minutos
+      };
     return (
         <>
-        <article className={style.post}>
+        <article key={id} className={style.post}>
             <header>
                 <div className={style.header}>
                 <div className={style.author}>
                     <Avatar src='https://github.com/hoffsilva.png' />
                     <div className={style.authorInformation}>
-                        <strong>{author}</strong>
-                        <span className={style.authorHole}>{author}</span>
+                        <strong>{author.name}</strong>
+                        <span className={style.authorRole}>{author.role}</span>
                     </div>
                 </div>
-                <time dateTime="2024-05-26 12:13:14" title="26 de maio de 2024 às 12:13" >Publicado há 1h</time>
+                <time dateTime={publishedAt.toDateString()} title={publishedAt.toDateString()} >{publishedAt.toLocaleDateString('pt-BR', options)}</time>
                 </div>
             </header>
             <div className={style.content}>
-                <p>Fala galera  👋</p>
-                <p>Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀 </p>
-                <a href="">jane.design/doctorcare</a>
-                <p><a href="">#novoprojeto</a>
-                 <a href="">#nlw</a>
-                 <a href="">#rocketseat</a></p>
+               <p>{content.map(line => {
+                return line.type === 'paragraph'? <p>{line.content}</p> : <a href={"https://" + line.content}>{line.content}</a>
+               })}</p>
             </div>
             
             <form className={style.commentForm}>
@@ -41,18 +44,15 @@ export function Post({ author, content }: PostProps) {
             </form>
         </article>
         <div>
-            <Comment 
-                imageURL='https://avatars.githubusercontent.com/u/25959443?v=4' 
-                name='Devon' 
-                commentedAt='Há 2 horas' 
-                text='este é o texto do comentário'
+            {comments.map(comment => {
+                return <Comment 
+                imageURL={comment.imageURL}
+                name={comment.name} 
+                commentedAt={comment.commentedAt} 
+                text={comment.text}
             />
-            <Comment 
-                imageURL='https://avatars.githubusercontent.com/u/25959443?v=4' 
-                name='Devon' 
-                commentedAt='Há 2 horas' 
-                text='este é o texto do comentário'
-            />
+            })}
+            
             
         </div>
         </>
