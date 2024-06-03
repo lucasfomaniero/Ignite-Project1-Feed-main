@@ -1,3 +1,4 @@
+import { IComment } from "./IComment";
 import { ContentType } from "./IContentType";
 
 export interface IPost  {
@@ -5,4 +6,5 @@ export interface IPost  {
     author: IAuthor;
     publishedAt: Date;
     content: ContentType[];
+    comments: IComment[]
 }

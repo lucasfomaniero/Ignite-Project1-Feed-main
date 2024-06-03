@@ -1,13 +1,17 @@
 import { Avatar } from './Avatar'
 import styles from './Comment.module.css'
 import { ThumbsUp, Trash } from 'phosphor-react';
-interface CommentProps {
-    imageURL: string;
-    name: string;
-    commentedAt: string;
-    text: string;
+
+export interface CommentProps {
+  id: string;
+  imageURL: string;
+  name: string;
+  commentedAt: string;
+  text: string;
+  deleteComment: (id: string) => void;
 }
-export function Comment({imageURL, name, commentedAt, text}: CommentProps) {
+
+export function PostComment({id, imageURL, name, commentedAt, text, deleteComment}: CommentProps) {
     return (
         <div className={styles.comment} >
         <Avatar hasBorder={false} src={imageURL} />
@@ -20,7 +24,7 @@ export function Comment({imageURL, name, commentedAt, text}: CommentProps) {
               </div>
   
               <button title='Deletar'>
-                <Trash size={24} />
+                <Trash size={24} onClick={() => deleteComment(id)} />
               </button>
   
             </header>

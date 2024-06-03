@@ -1,5 +1,5 @@
 
-import { ImgHTMLAttributes } from 'react';
+import { ImgHTMLAttributes, useState } from 'react';
 import styles from './Avatar.module.css'
 import { getRandomGender } from '../utils/getRandomGender';
 import { getRandomNumber } from '../utils/getRandomNumber';
@@ -16,10 +16,10 @@ export function Avatar({ hasBorder = true, src, ...props}: AvatarProps) {
     const number = getRandomNumber(1, 99);
     const hasImage = src !== undefined && src !== '';
     const imgUrl = hasImage ? src : `https://randomuser.me/api/portraits/${gender}/${number}.jpg`;
-
+    const [avatar, _] = useState<string>(imgUrl)
     return <img className={hasBorder ? styles.avatarWithBorder : styles.avatar}
     alt={`Random ${gender} avatar`}
-    src={imgUrl}
+    src={avatar}
     {...props}
     />
 }

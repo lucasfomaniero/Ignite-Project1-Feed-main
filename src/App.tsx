@@ -1,27 +1,15 @@
 import { Header } from "./components/Header"
-import { Post } from "./components/Post"
+import { Post, PostProps } from "./components/Post"
 import "./fonts/CormorantGaramond-Regular.ttf"
 import style from './App.module.css'
 import { Sidebar } from "./components/Sidebar"
 import { Feed } from "./components/Feed"
 import * as uuid from 'uuid';
 import { ContentType } from "./model/IContentType"
+import { useState } from "react"
+import { IComment } from './model/IComment';
+import { IPost } from "./model/IPost"
 
-export interface PostProps  {
-  id: string;
-  author: IAuthor;
-  publishedAt: Date;
-  content: ContentType[];
-  comments: Comment[];
-}
-
-interface Comment {
-  id: string;
-  imageURL: string;
-  name: string;
-  commentedAt: string;
-  text: string;
-}
 
 interface IAuthor {
   avatarUrl: string;
@@ -29,7 +17,7 @@ interface IAuthor {
   role: string;
 }
 
-const fixedPosts: PostProps[] = [
+const fixedPosts: IPost[] = [
   {
     id: uuid.v4(),
     author: {
@@ -107,7 +95,7 @@ const fixedPosts: PostProps[] = [
 ] 
 
 function App() {
-
+  
   return (
     <div>
       <Header />
@@ -115,7 +103,7 @@ function App() {
         <Sidebar />
         <Feed>
          {fixedPosts.map( post => {
-          return <Post id={post.id} author={post.author} publishedAt={post.publishedAt} content={post.content} comments={post.comments} />
+          return <Post key={post.id} id={post.id} author={post.author} publishedAt={post.publishedAt} content={post.content} comments={post.comments}/>
          })}
         </Feed>
         
