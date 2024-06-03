@@ -8,10 +8,10 @@ export interface CommentProps {
   name: string;
   commentedAt: string;
   text: string;
-  deleteComment: (id: string) => void;
+  onDeleteComment: (id: string) => void;
 }
 
-export function PostComment({id, imageURL, name, commentedAt, text, deleteComment}: CommentProps) {
+export function PostComment({id, imageURL, name, commentedAt, text, onDeleteComment}: CommentProps) {
     return (
         <div className={styles.comment} >
         <Avatar hasBorder={false} src={imageURL} />
@@ -24,7 +24,7 @@ export function PostComment({id, imageURL, name, commentedAt, text, deleteCommen
               </div>
   
               <button title='Deletar'>
-                <Trash size={24} onClick={() => deleteComment(id)} />
+                <Trash size={24} onClick={() => onDeleteComment(id)} />
               </button>
   
             </header>

@@ -114,7 +114,7 @@ export function Post({id, author, publishedAt, content, comments }: PostProps) {
                 name={comment.name} 
                 commentedAt={comment.commentedAt} 
                 text={comment.text}
-                deleteComment={deleteComment}
+                onDeleteComment={deleteComment}
             />
             })}
             
